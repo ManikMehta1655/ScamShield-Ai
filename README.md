@@ -1,9 +1,6 @@
 # 🛡️ ScamShield AI
-## 🌐 Live Demo
 
 🚀 **ScamShield AI is live!**
-
-[![Live Demo] (https://scamshieldchecker.netlify.app/)
 
 **Live Project:** https://scamshieldchecker.netlify.app/
 
