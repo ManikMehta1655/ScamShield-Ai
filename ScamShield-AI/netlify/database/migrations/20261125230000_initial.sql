@@ -1,0 +1,7 @@
+CREATE TABLE IF NOT EXISTS users (id TEXT PRIMARY KEY, username TEXT NOT NULL UNIQUE, password_hash TEXT NOT NULL, display_name TEXT NOT NULL, email TEXT NOT NULL DEFAULT '', created_at TEXT NOT NULL);
+CREATE TABLE IF NOT EXISTS sessions (digest TEXT PRIMARY KEY, user_id TEXT NOT NULL REFERENCES users(id) ON DELETE CASCADE, expires BIGINT NOT NULL);
+CREATE INDEX IF NOT EXISTS sessions_user ON sessions(user_id);
+CREATE INDEX IF NOT EXISTS sessions_expiry ON sessions(expires);
+CREATE TABLE IF NOT EXISTS scans (id TEXT PRIMARY KEY, user_id TEXT NOT NULL REFERENCES users(id) ON DELETE CASCADE, created_at TEXT NOT NULL, kind TEXT NOT NULL, risk_score INTEGER NOT NULL, risk_level TEXT NOT NULL, category TEXT NOT NULL);
+CREATE INDEX IF NOT EXISTS scans_user_date ON scans(user_id,created_at DESC);
+CREATE TABLE IF NOT EXISTS rate_limits (key TEXT PRIMARY KEY, expires BIGINT NOT NULL, count INTEGER NOT NULL);
